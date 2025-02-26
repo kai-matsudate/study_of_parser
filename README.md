@@ -1,2 +1,17 @@
 # study_of_parser
-using for studying parser to be ready for RubyKaigi 2025
+
+このリポジトリは RubyKaigi 2025 に向けて Ruby のパーサについて学ぶために作成されました。
+
+## 本セッションの目的
+
+1. プログラミング言語におけるパーサの役割を理解する
+2. Ruby のパーサの歴史を知る
+3. 最新の Ruby パーサの動向について知る
+
+## 本セッションの内容
+
+1. パーサとは
+2. Ruby のパーサの歴史
+3. workshop: yacc を使った parser の作成
+4. Ripper, Prism を触ってみよう
+5. 2024 年の Ruby パーサの動向
