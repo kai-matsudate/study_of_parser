@@ -17,8 +17,6 @@ void yyerror(const char *s);
 %token <ival> NUMBER
 %token EOL
 
-%left '+' '-' '*' '/'
-
 %%
 
 lines   : lines expr EOL { printf("= %d\n", $2); }
