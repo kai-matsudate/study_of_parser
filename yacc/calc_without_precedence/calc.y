@@ -17,7 +17,9 @@ void yyerror(const char *s);
 %token <ival> NUMBER
 %token EOL
 
-%left '+' '-' '*' '/'
+%left '+' '-'
+%left '*' '/'
+
 
 %%
 
