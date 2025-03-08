@@ -3,6 +3,40 @@
 このリポジトリは字句解析器(lexer)と構文解析器(parser)の基本概念を学ぶための実践的なサンプル集です。
 最初はRubyKaigi 2025に向けてRubyのパーサーについて学ぶために作成されましたが、一般的なパーサー技術の学習にも役立ちます。
 
+## パーサーの基本的な処理フロー
+
+```mermaid
+flowchart TD
+    A[ソースコード] --> B[字句解析器\nLex/Flex]
+    B -->|トークン列| C[構文解析器\nYacc/Bison]
+    C -->|構文木/AST| D[意味解析]
+    D --> E[コード生成]
+    E --> F[実行可能ファイル]
+    
+    style B fill:#f9d5e5,stroke:#333,stroke-width:2px
+    style C fill:#eeac99,stroke:#333,stroke-width:2px
+```
+
+## LexとYaccの連携
+
+```mermaid
+sequenceDiagram
+    participant User as ユーザー
+    participant Main as メイン関数
+    participant Lex as 字句解析器(yylex)
+    participant Yacc as 構文解析器(yyparse)
+    
+    User->>Main: 入力テキスト
+    Main->>Yacc: yyparse()を呼び出し
+    loop トークン要求
+        Yacc->>Lex: トークン要求
+        Lex-->>Yacc: トークン返却
+        Yacc->>Yacc: 文法規則に基づいて解析
+    end
+    Yacc-->>Main: 解析結果
+    Main-->>User: 出力
+```
+
 ## 前提条件
 
 このリポジトリのサンプルを実行するには以下のツールが必要です：

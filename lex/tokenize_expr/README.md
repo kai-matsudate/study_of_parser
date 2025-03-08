@@ -2,6 +2,39 @@
 
 この例では、算術式を読み取り、含まれる数値と演算子をトークンとして識別する字句解析器を実装しています。
 
+## 字句解析の動作フロー
+
+```mermaid
+flowchart LR
+    A[入力文字列\n"3 + 4 * 2"] --> B[字句解析器\nyylex()]
+    B -->|トークン1| C[NUMBER: 3]
+    B -->|トークン2| D[PLUS: +]
+    B -->|トークン3| E[NUMBER: 4]
+    B -->|トークン4| F[MULT: *]
+    B -->|トークン5| G[NUMBER: 2]
+    
+    style B fill:#f9d5e5,stroke:#333,stroke-width:2px
+    style C fill:#e6f7ff,stroke:#333,stroke-width:1px
+    style D fill:#e6f7ff,stroke:#333,stroke-width:1px
+    style E fill:#e6f7ff,stroke:#333,stroke-width:1px
+    style F fill:#e6f7ff,stroke:#333,stroke-width:1px
+    style G fill:#e6f7ff,stroke:#333,stroke-width:1px
+```
+
+## パターンマッチングの仕組み
+
+```mermaid
+flowchart TD
+    A[入力バッファ] --> B{パターンマッチング}
+    B -->|[0-9]+| C[NUMBER]
+    B -->|"+"| D[PLUS]
+    B -->|"*"| E[MULT]
+    C & D & E --> F[次のトークンへ]
+    F --> B
+    
+    style B fill:#f9d5e5,stroke:#333,stroke-width:2px
+```
+
 ## 学習ポイント
 
 - トークンの定義と識別

@@ -2,6 +2,56 @@
 
 この例では、入力された数式から抽象構文木（Abstract Syntax Tree, AST）を構築する方法を実装しています。
 
+## 構文解析とASTの構築プロセス
+
+```mermaid
+flowchart TD
+    subgraph "入力: 3 + 4 * 2"
+    A[トークン列] --> B["NUMBER(3)"] 
+    A --> C["PLUS(+)"]
+    A --> D["NUMBER(4)"]
+    A --> E["MULT(*)"]
+    A --> F["NUMBER(2)"]
+    end
+    
+    subgraph "構文解析"
+    B --> G["式"]
+    D --> H["式"]
+    F --> I["式"]
+    H & I --> J["式: 4 * 2"]
+    G & J --> K["式: 3 + (4 * 2)"]
+    end
+    
+    subgraph "AST"
+    L["+"] --> M["3"]
+    L --> N["*"]
+    N --> O["4"]
+    N --> P["2"]
+    end
+    
+    K -.- L
+    
+    style L fill:#eeac99,stroke:#333,stroke-width:2px
+    style N fill:#eeac99,stroke:#333,stroke-width:2px
+```
+
+## ASTの具体例
+
+以下は式 `(3 + 2) * 5` のASTです：
+
+```mermaid
+graph TD
+    A["*"] --> B["+"]
+    A --> C["5"]
+    B --> D["3"]
+    B --> E["2"]
+    
+    style A fill:#eeac99,stroke:#333,stroke-width:2px
+    style B fill:#eeac99,stroke:#333,stroke-width:2px
+```
+
+この木構造により、演算子の優先順位や括弧による演算順序が明確に表現されています。
+
 ## 学習ポイント
 
 - 抽象構文木の概念と構造
